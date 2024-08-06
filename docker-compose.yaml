@@ -1,0 +1,38 @@
+services:
+  mongo:
+      image: mongo
+      restart: always
+      # environment:
+      #   MONGO_INITDB_ROOT_USERNAME: root
+      #   MONGO_INITDB_ROOT_PASSWORD: example
+      ports:
+        - "27017:27017"
+      volumes:
+        - db_data:/data/db
+        - ./mongod.conf:/etc/mongod.conf
+      entrypoint: ["mongod","--config","/etc/mongod.conf"]
+      networks:
+        - default
+      depends_on:
+        - mongo
+        
+  python_api:
+    build:
+      context: ./python_api
+    ports:
+      - "5000:5000"
+
+  node_api:
+    build:
+      context: ./node_api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - python_api
+
+volumes:
+  db_data:
+    driver: local
+
+networks:
+  default:
