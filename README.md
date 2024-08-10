@@ -1,6 +1,6 @@
 # Distributed LLM Assignment (LLM Chat API)
 
-This project includes two programs: a Python API and a Node.js API. The Python API uses one of two large language models to answer questions. 
+This project assignment includes two programs: a Python API and a Node.js API. The Python API uses one of two large language models to answer questions. 
 The Node.js API is the public interface that users interact with.
 
 ## How They Work Together
